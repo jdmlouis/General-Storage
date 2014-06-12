@@ -1,3 +1,5 @@
+searchString = "serv";
+
 findElements();
 
 clickLoop();
@@ -11,7 +13,7 @@ function findElements() {
 			console.log("nope (no id)\n");
 		}
 		else {
-			if(document.links[rev].id.indexOf("serv") >= 0) {
+			if(document.links[rev].id.indexOf(searchString) >= 0) {
 				console.log(document.links[rev].id);
 				resultarr[n] = document.links[rev].id;
 				n++;
