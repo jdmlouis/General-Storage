@@ -1,0 +1,16 @@
+<!-- Call this one "index.html" when you put it on your server.
+     Also make sure the PHP back-end is named "seeker.php" 
+     and is in the same folder as this HTML file.
+-->
+
+<head>
+<title>404 Error Checker Tool</title>
+</head>
+<body>
+<h1>404 Error Checker Tool</h1>
+<p>Paste in a list of page URLs, one page per line. No, it doesn't matter if they have http:// up front or not: I've got ways to handle that. Give it a few minutes if you're doing 50 or more items in one go.</p>
+<form action="seeker.php" method="post">
+<textarea width="200" name="urllist"></textarea><br/><br/>
+<input type="submit" value="Run the Query">
+</form>
+</body>
