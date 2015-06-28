@@ -1,0 +1,51 @@
+<?php //Call this one "seeker.php" when you put it on your server.
+      //Also make sure the HTML front-end is named "index.html" 
+      //and is in the same folder as this PHP file.
+?>
+
+<?php
+$urllist = "";
+$i = 0;
+
+function urlstatus($url=NULL) {
+	if($url==NULL) return false;
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$data = curl_exec($ch);
+	$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	if(curl_errno($ch)) return curl_error($ch);
+	curl_close($ch);
+	return $httpcode;
+}
+
+function getTitle($url=NULL) {
+	if($url==NULL) return false;
+    $data = file_get_contents($url);
+    $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
+    return $title;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$urllist = trim(htmlentities($_POST["urllist"]));
+	$urllist = str_replace("\"","\"",$urllist);
+	$urllist = str_replace("\\","\\",$urllist);
+	$parsedlist = explode("\n",$urllist);
+	$handlingfile = fopen('output.csv', 'w');
+	$titles = array('URL Checked','Server Code');
+	fputcsv($handlingfile, $titles);
+	echo "<table><tr style=\"font-weight:bold;\"><td>URL Checked</td><td>Server Code</td></tr>";
+	foreach($parsedlist as $listitem){
+		if(strpos($listitem,"http://")===false) {
+			$listitem = "http://".trim($listitem);
+		}
+		$httpcode = urlstatus($listitem);
+		echo "<tr><td>".$listitem."</td><td>".$httpcode."</td></tr>";
+		$csvlist = array($listitem, $httpcode);
+		fputcsv($handlingfile,$csvlist);
+		$i++;
+	}
+	fclose($handlingfile);
+	echo("</table><br/><br/><a href=\"output.csv\">Lookup Output</a><br/><br/><a href=\"index.html\">Do Another Lookup</a>");
+}
