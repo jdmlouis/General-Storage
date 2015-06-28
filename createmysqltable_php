@@ -1,7 +1,7 @@
-// Code to create an SQL table in PHP
 
 <?php 
-
+// Code to create an SQL table in PHP
+// Created Jan 6, 2015
 //createtable
 
 $con=mysqli_connect($_ENV['DATABASE_SERVER'],"/*db*/","/*dbpass*/","/*db_dbname*/");
