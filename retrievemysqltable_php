@@ -1,0 +1,36 @@
+<?php 
+
+// retrievetable
+
+// define connection params
+
+$con=mysqli_connect($_ENV['DATABASE_SERVER'],"/*db*/","/*dbpass*/","/*db_dbname*/");
+
+if (mysqli_connect_errno()) {
+	echo "Failed to connect to DB - error: " . mysqli_connect_error();
+}
+
+$result = mysqli_query($con,"SELECT * FROM /*tablename*/");
+
+echo "<table border='1'>
+<tr>
+<th>PID</th>
+<th>testtext 1</th>
+<th>testtext 2</th>
+<th>testradio 1</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['PID'] . "</td>";
+  echo "<td>" . $row['testtext1'] . "</td>";
+  echo "<td>" . $row['testtext2'] . "</td>";
+  echo "<td>" . $row['testradio1'] . "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+mysqli_close($con);
+
+?>
