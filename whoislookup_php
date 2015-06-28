@@ -1,0 +1,44 @@
+<?php 
+
+/* Created Jan 26, 2012 */
+
+function domain_check($domain) { 
+
+$data = 'http://'.$domain; 
+
+// Create a curl handle to a non-existing location 
+$ch = curl_init($data); 
+
+// Execute 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+curl_exec($ch); 
+
+// Check if any error occured 
+if(curl_errno($ch)) 
+{ 
+    return '<span style="color:#22c922">The domain is available!</span>'; 
+} else { 
+    return '<span style="color:#c92222">The domain is not available</span>'; 
+} 
+
+// Close handle 
+curl_close($ch); 
+} 
+
+// Usage: 
+if(isset($_POST['domain'])) { 
+ echo domain_check($_POST['domain'].$_POST['tld']); 
+} 
+
+?> 
+
+<form method="POST" action=""> 
+http:// <input type="text" name="domain"> 
+<select name="tld"> 
+<option value=".com">.com</option>
+<option value=".ca">.ca</option> 
+<option value=".org">.org</option>
+<option value=".net">.net</option> 
+</option> 
+<input type="submit" value="Check"> 
+</form>
