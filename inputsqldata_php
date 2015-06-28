@@ -1,0 +1,56 @@
+<?php
+
+// sqlinputaction
+
+// define connection params
+
+$con=mysqli_connect($_ENV['DATABASE_SERVER'],"/*db*/","/*dbpass*/","/*db_dbname*/");
+
+if (mysqli_connect_errno()) {
+	echo "Failed to connect to DB - error: " . mysqli_connect_error();
+}
+
+// grab inputs from form
+
+$student1 = mysqli_real_escape_string($con, $_POST['student1']);
+$student2 = mysqli_real_escape_string($con, $_POST['student2']);
+$student3 = mysqli_real_escape_string($con, $_POST['student3']);
+$testradio1 = mysqli_real_escape_string($con, $_POST['testradio1']);
+$decoyhoneypot = mysqli_real_escape_string($con, $_POST['decoyhoneypot']);
+
+// live db manipulation
+
+$sql="INSERT INTO /*tablename*/ (student1, student2, student3, testradio1)
+VALUES ('".$student1."', '".$student2."', '".$student3."', '".$testradio1."')";
+
+if (!mysqli_query($con,$sql)) {
+	die('Error: ' . mysqli_error($con));
+}
+echo "1 record added";
+
+$result = mysqli_query($con,"SELECT * FROM /*tablename*/");
+
+echo "<table border='1'>
+<tr>
+<th>PID</th>
+<th>testtext 1</th>
+<th>testtext 2</th>
+<th>testradio 1</th>
+<th>DROP?</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['PID'] . "</td>";
+  echo "<td>" . $row['testtext1'] . "</td>";
+  echo "<td>" . $row['testtext2'] . "</td>";
+  echo "<td>" . $row['testradio1'] . "</td>";
+  echo "<td></td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+ 
+mysqli_close($con);
+
+?>
