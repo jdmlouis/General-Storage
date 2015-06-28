@@ -1,0 +1,54 @@
+<?php //Call this one "seeker.php" when you put it on your server.
+      //Also make sure the HTML front-end is named "index.html" 
+      //and is in the same folder as this PHP file.
+?>
+
+<head>
+<title>Page Contents Lookup Tool</title>
+<meta charset="UTF-8">
+</head>
+<body>
+<?php
+$urllist = "";
+$querylist = "";
+$i = 0;
+
+function getElement($page_url,$incomingelement) {
+	$read_page=file_get_contents($page_url);
+	$returnelement = strpos($read_page,$incomingelement);
+	if (isset($returnelement)) {
+        if ($returnelement == '') {
+            return "Search string not found.";
+        }
+        return $returnelement;
+    }
+    else {return "Not working right.";}
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$urllist = trim(htmlentities(strip_tags($_POST["urllist"])));
+	$query = trim(htmlentities(strip_tags($_POST["querylist"])));
+	$parsedlist = explode("\n",$urllist);
+	$handlingfile = fopen('output.csv', 'w');
+	$titles = array('URL Checked','Containing?');
+	fputcsv($handlingfile, $titles);
+	echo "<table><tr style=\"font-weight:bold;\"><td>URL Checked</td><td>Element Contents</td></tr>";
+	foreach($parsedlist as $listitem){
+		if(strpos($listitem,"http://")===false) {
+			$listitem = "http://".trim($listitem);
+		}
+		$queryreturn = getElement($listitem,$query);
+		if($queryreturn>0){
+			$queryresult = "yes";
+		}
+		else {$queryresult="nope";}
+		echo "<tr><td>".$listitem."</td><td>".$queryreturn."</td></tr>";
+		$csvlist = array_map("utf8_decode",array($listitem, $queryreturn));
+		fputcsv($handlingfile,$csvlist);
+		$i++;
+	}
+	fclose($handlingfile);
+	echo("</table><br/><br/><a href=\"output.csv\">Lookup Output</a><br/><br/><a href=\"index.html\">Do Another Lookup</a>");
+}
+?>
+</body>
