@@ -1,8 +1,9 @@
+<?php
+
 /* created Jan 26, 2012
 
 /* PHP code to grab a page, packed into the $url variable, and replace potentially harmful chars with benign ones */
 
-<?php
     $url = "http://www.cardinalpath.com";
 	$ch = curl_init(); 
             curl_setopt($ch, CURLOPT_URL, $url); 
