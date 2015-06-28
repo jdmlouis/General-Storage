@@ -1,7 +1,7 @@
-<?php //Call this one "index.html" when you put it on your server.
-      //Also make sure the PHP back-end is named "seeker.php" 
-      //and is in the same folder as this HTML file.
-?>
+<!-- Call this one "index.html" when you put it on your server.
+     Also make sure the PHP back-end is named "seeker.php" 
+     and is in the same folder as this HTML file.
+-->
 
 <head>
 <title>Page Title Lookup Tool</title>
