@@ -1,0 +1,22 @@
+// Code to create an SQL table in PHP
+
+<?php 
+
+//createtable
+
+$con=mysqli_connect($_ENV['DATABASE_SERVER'],"/*db*/","/*dbpass*/","/*db_dbname*/");
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+// Create table
+$sql="CREATE TABLE /*tablename*/ (PID INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(PID), testtext1 CHAR(30), testtext2 CHAR(30), testradio1 CHAR(10))";
+
+// Execute query
+if (mysqli_query($con, $sql)) {
+  echo "Table created successfully";
+} else {
+  echo "Error creating table: " . mysqli_error($con);
+}
+?>
