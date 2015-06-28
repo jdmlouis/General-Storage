@@ -1,0 +1,85 @@
+<!-- Form to input data for SQL db - incomplete - contemplated replacement for Ottawa Heritage Fair registration form so I don't have to keep paying for FluidSurveys every year.-->
+
+<!--sqlinputform-->
+
+<form action="sqlinputaction.php" method="post" name="registration">
+	
+	<p>
+		<h3>Students' Names</h3>
+		<strong>Student 1: <input type="text" name="student1"><br />
+		<strong>Student 2: <input type="text" name="student2"><br />
+		<strong>Student 3: <input type="text" name="student3"><br />
+	</p>
+	
+	<p>
+		<h3>School Information</h3>
+		<strong>School Name: <select name="school" form="registration">
+			<option>- Select Your School -</option>
+			<option value="cedarview">Cedarview Middle School</option>
+			<option value="fielding-drive">Fielding Drive Public School</option>
+			<option value="glashan">Glashan Public School</option>
+			<option value="perth">Perth and District Collegiate Institute</option>
+			<option value="westboro">Westboro Academy</option>
+			<option value="holy-redeemer">Holy Redeemer Catholic School</option>
+			<option value="immaculata">Immaculata Catholic High School</option>
+			<option value="st-bernard">St. Bernard Catholic School</option>
+			<option value="st-catherine">St. Catherine Catholic School</option>
+			<option value="st-elizabeth-ann-seton">St. Elizabeth Ann Seton Catholic School</option>
+			<option value="st-emily">St. Emily Catholic School</option>
+			<option value="st-gabriel">St. Gabriel Catholic School</option>
+			<option value="st-isidore">St. Isidore Catholic School</option>
+			<option value="st-jerome">St. John the Apostle Catholic School</option>
+			<option value="st-john-the-apostle">St. John the Apostle Catholic School</option>
+			<option value="st-leonard">St. Leonard Catholic School</option>
+			<option value="st-luke">St. Luke Catholic School</option>
+			<option value="st-mary">St. Mary Catholic School</option>
+			<option value="st-patrick">St. Patrick Catholic School</option>
+			<option value="home-school">Home-Schooling</option>
+			<option value="other">Other</option>
+		</select>
+		<br />
+		<strong>School Name</strong> <em>(if Other)</em>: <input type="text" name="otherschool"><br />
+		<strong>Teacher Name: <input type="text" name="teacher"><br />
+	</p>
+	
+	<p>
+		<h3>Project Information</h3>
+		<strong>Project Title: <input type="text" name="projectname"><br />
+		<strong>Project Language: English <input type="radio" name="language" value="En"> - French <input type="radio" name="language" value="Fr"> - Bilingual <input type="radio" name="language" value="Bilingual"><br />
+		French Level: 
+		</p>
+	
+	<!-- Radio button -->
+	<p>
+		Radio button option 1: <input type="radio" name="testradio1" value="1"><br />
+		Radio button option 2: <input type="radio" name="testradio1" value="2"><br />
+	</p>
+	
+	<!-- Checkbox options -->
+	<!-- remember to add links to actual award description later -->
+	<!-- How exactly are checkboxes returned on the other side?  As an array? -->
+	<p>
+		<h3>Award Eligibility</h3>
+		<p><input type="checkbox" name="award" value="ottawa-local-history">City of Ottawa Local History Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="military-history">Military History Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="pinheys-point">Pinhey's Point Foundation Award for Local History - Learn More</p>
+		<p><input type="checkbox" name="award" value="cumberland">Cumberland Township Historical Society Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="reading-and-remembrance">Reading and Remembrance Project Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="imp-order-daughters-emp">IODE Laurentian Chapter History Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="ont-cath-school-board">Ontario Catholic School Board Heritage Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="canada-history-society">Canada's National History Society Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="ohfa-founders">Ontario Heritage Fair Association Founders' Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="ohfa-multicultural">Ontario Heritage Fair Association Multicultural Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="archives-ontario">Archives of Ontario Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="ont-historical-soc">Ontario Historical Society Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="ont-teachers-assoc">Ontario History and Social Science Teachers Association - Learn More</p>
+		<p><input type="checkbox" name="award" value="ont-genealogy">Ontario Genealogical Society Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="ont-womens-history">Ontario Women's History Network Award - Learn More</p>
+		<p><input type="checkbox" name="award" value="ont-library-assoc">Ontario Library Association Award - Learn More</p>
+	</p>
+	
+	<input type="text" name="decoyhoneypot" style="display:none;">
+	
+	<input type="submit" value="submit">
+	
+</form>
