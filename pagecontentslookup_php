@@ -1,6 +1,8 @@
 <?php //Call this one "seeker.php" when you put it on your server.
       //Also make sure the HTML front-end is named "index.html" 
       //and is in the same folder as this PHP file.
+      
+      // Created May 4, 2015 - May the Fourth be with you, always.
 ?>
 
 <head>
