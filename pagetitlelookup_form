@@ -1,6 +1,8 @@
 <!-- Call this one "index.html" when you put it on your server.
      Also make sure the PHP back-end is named "seeker.php" 
      and is in the same folder as this HTML file.
+     
+     Created March 20, 2015
 -->
 
 <head>
