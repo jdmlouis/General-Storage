@@ -1,6 +1,8 @@
 <!-- Form to input data for SQL db - incomplete - contemplated replacement for Ottawa Heritage Fair registration form so I don't have to keep paying for FluidSurveys every year.-->
 
-<!--sqlinputform-->
+<!-- Created Jan 6, 2015
+
+sqlinputform-->
 
 <form action="sqlinputaction.php" method="post" name="registration">
 	
