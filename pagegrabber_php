@@ -1,0 +1,46 @@
+/* PHP code to grab a page, packed into the $url variable, and replace potentially harmful chars with benign ones */
+
+<?php
+    $url = "http://www.cardinalpath.com";
+	$ch = curl_init(); 
+            curl_setopt($ch, CURLOPT_URL, $url); 
+            curl_setopt($ch, CURLOPT_HEADER, TRUE); 
+            //curl_setopt($ch, CURLOPT_NOBODY, TRUE); // remove body 
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+            $readtext = curl_exec($ch); 
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
+            curl_close($ch); 
+	
+	$search = array ("'<script[^>]*?>.*?</script>'si",  // Strip out javascript 
+					 "'<[/!]*?[^<>]*?>'",          // Strip out HTML tags 
+					 "'([rn])[s]+'",                // Strip out white space 
+					 "'&(quot|#34);'i",                // Replace HTML entities 
+					 "'&(amp|#38);'i", 
+					 "'&(lt|#60);'i", 
+					 "'&(gt|#62);'i", 
+					 "'&(nbsp|#160);'i", 
+					 "'&(iexcl|#161);'i", 
+					 "'&(cent|#162);'i", 
+					 "'&(pound|#163);'i", 
+					 "'&(copy|#169);'i", 
+					 "'&#(d+);'e");                    // evaluate as php 
+
+	$replace = array ("", 
+					 "", 
+					 "\1", 
+					 "\"", 
+					 "&", 
+					 "<", 
+					 ">", 
+					 " ", 
+					 chr(161), 
+					 chr(162), 
+					 chr(163), 
+					 chr(169), 
+					 "chr(\1)"); 
+
+	$text = preg_replace($search, $replace, $readtext); 
+	
+	echo $text;
+
+?>
